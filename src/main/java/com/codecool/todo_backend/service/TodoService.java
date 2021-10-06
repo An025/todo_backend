@@ -36,4 +36,14 @@ public class TodoService {
             throw new IllegalStateException("Not found todo: " + todoId);
         }
     }
+
+    public void deleteTodo(Long todoId) {
+        boolean exists = todoRepository.existsById(todoId);
+        if(!exists){
+            throw new IllegalStateException("Todo with id " + todoId + "doesn't exists.");
+        }
+        todoRepository.deleteById(todoId);
+    }
+
+
 }
