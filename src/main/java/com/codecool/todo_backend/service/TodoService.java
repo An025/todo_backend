@@ -70,4 +70,16 @@ public class TodoService {
             deleteTodo(todo.getId());
         }
     }
+
+    @Transactional
+    public void toggleStatusById(Long todoId) {
+        Todo todo = todoRepository.findById(todoId).orElseThrow(
+                ()-> new IllegalStateException(
+                        "Todo with id " + todoId + " does not exists"
+                ));
+
+        todo.setStatus(todo.getStatus().equals(Status.COMPLETE)? Status.ACTIVE : Status.COMPLETE);
+        System.out.println(todo);
+        todoRepository.saveAndFlush(todo);
+    }
 }

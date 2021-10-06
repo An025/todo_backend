@@ -51,4 +51,12 @@ public class TodoController {
     public void deleteAllCompleted(){
         todoService.deleteAllCompleted();
     }
+
+    @PutMapping(path="/toggleStatus/{todoId}")
+    public List<Todo> toggleStatus(
+            @PathVariable("todoId") Long todoId){
+        todoService.toggleStatusById(todoId);
+        return todoService.getTodos();
+    }
+
 }
