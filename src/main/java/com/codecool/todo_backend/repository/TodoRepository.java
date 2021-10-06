@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface TodoRepository extends JpaRepository<Todo, Long> {
     Optional<Todo> findTodoByTitle(String title);
+
+    Optional<Todo> findTodoById(Long todoId);
 }

@@ -27,4 +27,13 @@ public class TodoService {
         }
         todoRepository.save(todo);
     }
+
+    public Todo getTodo(Long todoId) {
+        Optional<Todo> todoOptional = todoRepository.findTodoById(todoId);
+        if(todoOptional.isPresent()){
+            return todoOptional.get();
+        }else{
+            throw new IllegalStateException("Not found todo: " + todoId);
+        }
+    }
 }

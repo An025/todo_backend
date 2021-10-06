@@ -27,4 +27,10 @@ public class TodoController {
     public void addNewTodo(@RequestBody Todo todo){
         todoService.addNewTodo(todo);
     }
+
+    @GetMapping(path="{todoId}")
+    public Todo getTodo(@PathVariable("todoId") Long todoId){
+        return todoService.getTodo(todoId);
+    }
+
 }
