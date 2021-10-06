@@ -1,10 +1,13 @@
 package com.codecool.todo_backend.service;
 
+import com.codecool.todo_backend.model.Status;
 import com.codecool.todo_backend.model.Todo;
 import com.codecool.todo_backend.repository.TodoRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -46,4 +49,18 @@ public class TodoService {
     }
 
 
+    @Transactional
+    public void updateTodo(Long todoId, String title, Status status) {
+        Todo todo = todoRepository.findById(todoId).orElseThrow(
+                () -> new IllegalStateException(
+                        "Todo with id " + todoId + " does not exists"
+                ));
+        if(title!=null && title.length() > 0 && !Objects.equals(todo.getTitle(), title)){
+            todo.setTitle(title);
+        }
+        if(status != null  && !Objects.equals(todo.getStatus(), status)){
+            todo.setStatus(status);
+        }
+        todoRepository.saveAndFlush(todo);
+    }
 }

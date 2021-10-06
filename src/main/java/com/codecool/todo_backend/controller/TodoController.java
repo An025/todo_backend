@@ -1,5 +1,6 @@
 package com.codecool.todo_backend.controller;
 
+import com.codecool.todo_backend.model.Status;
 import com.codecool.todo_backend.model.Todo;
 import com.codecool.todo_backend.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,4 +39,11 @@ public class TodoController {
         todoService.deleteTodo(todoId);
     }
 
+    @PutMapping(path="{todoId}")
+    public void updateTodo(
+            @PathVariable("todoId") Long todoId,
+            @RequestParam(name = "title", required = false) String title,
+            @RequestParam(name = "status", required = false) Status status){
+        todoService.updateTodo(todoId, title, status);
+    }
 }
