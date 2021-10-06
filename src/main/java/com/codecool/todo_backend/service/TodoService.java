@@ -63,4 +63,11 @@ public class TodoService {
         }
         todoRepository.saveAndFlush(todo);
     }
+
+    public void deleteAllCompleted() {
+        List<Todo> allByStatus = todoRepository.findAllByStatus(Status.COMPLETE);
+        for(Todo todo: allByStatus){
+            deleteTodo(todo.getId());
+        }
+    }
 }

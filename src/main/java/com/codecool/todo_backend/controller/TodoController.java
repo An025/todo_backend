@@ -46,4 +46,9 @@ public class TodoController {
             @RequestParam(name = "status", required = false) Status status){
         todoService.updateTodo(todoId, title, status);
     }
+
+    @DeleteMapping(path="/removeAllCompleted")
+    public void deleteAllCompleted(){
+        todoService.deleteAllCompleted();
+    }
 }
