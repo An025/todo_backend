@@ -28,6 +28,7 @@ public class TodoService {
         if(todoOptional.isPresent()){
             throw new IllegalStateException("todo taken");
         }
+        todo.setStatus(Status.ACTIVE);
         todoRepository.save(todo);
     }
 
