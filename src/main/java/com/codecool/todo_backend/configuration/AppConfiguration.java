@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.List;
+
 @Configuration
 public class AppConfiguration {
 
@@ -28,6 +30,14 @@ public class AppConfiguration {
                     .username("test_user")
                     .email("test@test.com")
                     .password(passwordEncoder.encode("password"))
+                    .roles(List.of("ROLE_USER"))
+                    .build();
+            userRepository.save(test_user);
+            AppUser admin = AppUser.builder()
+                    .username("admin")
+                    .email("admin@test.com")
+                    .password(passwordEncoder.encode("password"))
+                    .roles(List.of("ROLE_ADMIN"))
                     .build();
             userRepository.save(test_user);
         };
