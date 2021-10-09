@@ -59,4 +59,10 @@ public class TodoController {
         return todoService.getTodos();
     }
 
+    @PutMapping(path="/toggleAllStatus")
+    public List<Todo> toggleAllStatus(){
+        todoService.toggleAllStatus();
+        return todoService.getTodos();
+    }
+
 }

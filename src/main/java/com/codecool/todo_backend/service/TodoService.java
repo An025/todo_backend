@@ -82,4 +82,15 @@ public class TodoService {
         System.out.println(todo);
         todoRepository.saveAndFlush(todo);
     }
+
+    @Transactional
+    public void toggleAllStatus() {
+        List<Todo> todosList = todoRepository.findAll();
+        for(Todo todo : todosList){
+            if(todo.getStatus() != null) {
+                todo.setStatus(todo.getStatus().equals(Status.COMPLETE) ? Status.ACTIVE : Status.COMPLETE);
+            }
+        }
+        todoRepository.saveAllAndFlush(todosList);
+    }
 }
