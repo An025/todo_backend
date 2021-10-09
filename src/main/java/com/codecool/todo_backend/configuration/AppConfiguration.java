@@ -39,7 +39,7 @@ public class AppConfiguration {
                     .password(passwordEncoder.encode("password"))
                     .roles(List.of("ROLE_ADMIN"))
                     .build();
-            userRepository.save(test_user);
+            userRepository.save(admin);
         };
     }
 }
